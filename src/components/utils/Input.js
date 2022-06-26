@@ -13,6 +13,8 @@ class Input extends Component {
             <InputWrapper 
                 type="text"
                 placeholder={this.props.placeholder}
+                name={this.props.name}
+                onChange={this.props.eHandler}
             />   
             
         )

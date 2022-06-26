@@ -10,11 +10,11 @@ const FormWrapper = styled.div`
     border-color: #7FFFD4;
 }`
 
-class Form extends Component {
+class Form extends Component {    
     render() {
         return (
             <FormWrapper>
-                <PersonalInfo />
+                <PersonalInfo eHandler={this.props.eHandler}/>
             </FormWrapper>
         )
     };
