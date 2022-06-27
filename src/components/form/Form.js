@@ -14,7 +14,7 @@ class Form extends Component {
     render() {
         return (
             <FormWrapper>
-                <PersonalInfo eHandler={this.props.eHandler}/>
+                <PersonalInfo cv={this.props.cv} eHandler={this.props.eHandler}/>
             </FormWrapper>
         )
     };

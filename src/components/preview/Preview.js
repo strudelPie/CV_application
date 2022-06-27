@@ -11,9 +11,10 @@ const PreviewWrapper = styled.div`
 
 class Preview extends Component {
     render() {
+        const { cv } = this.props;
         return (
             <PreviewWrapper>
-                <Header cv={this.props.cv}/>
+                <Header cv={cv}/>
             </PreviewWrapper>
         )
     };

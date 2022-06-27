@@ -24,9 +24,13 @@ class Main extends Component {
 
         this.state = {
             cv: {
-                firstName: 'Test2',
-                lastName: '',
-                title: ''
+                firstName: '',
+                secondName: '',
+                title: '',
+                address: '',
+                email: '',
+                telephone: '',
+                description: ''
             }
         };
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -34,18 +38,19 @@ class Main extends Component {
 
     handleInputChange(e) {
         const { name, value } = e.target
-        this.setState(prevState => ({
+        const { cv } = this.state;
+        this.setState({
             cv: {
-                ...prevState,
-                [name]: value
-            }
-        }));
+                ...cv,
+                [name] : value
+            }}
+        );
     }
 
     render() {
         return (
             <Mainwrapper>
-                <Form eHandler={this.handleInputChange} />
+                <Form cv={this.state.cv} eHandler={this.handleInputChange} />
                 <Preview cv={this.state.cv}/>
             </Mainwrapper>
         )
