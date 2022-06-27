@@ -7,12 +7,12 @@ const HeaderWrapper = styled.div`
 
 const FullName = styled.h1`
     margin: 0;
-    height: 100px;
+   
 }`
 
-const JobTitle = styled.h1`
+const JobTitle = styled.h3`
     margin: 0;
-    height: 100px;
+   
 }`
 
 

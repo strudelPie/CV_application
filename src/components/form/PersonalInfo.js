@@ -21,7 +21,6 @@ const inputFields = [
 class PersonalInfo extends Component {    
     render() {
         const cv = this.props.cv;
-        console.log(cv.title)
         return (
             <PersonalInfoWrapper>
                 <Section title="Personal Details">
@@ -30,8 +29,10 @@ class PersonalInfo extends Component {
                     value={this.props.cv[inputField.tag]}
                     />
                    })}
-                   <TextArea name="description" placeholder="Description" eHanlder={this.props.eHandler}
+                   <TextArea name="description" placeholder="Description" eHandler={this.props.eHandler}
                    />
+
+                   
                    
                 </Section>
             </PersonalInfoWrapper>   

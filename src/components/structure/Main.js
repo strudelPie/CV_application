@@ -24,13 +24,16 @@ class Main extends Component {
 
         this.state = {
             cv: {
-                firstName: '',
-                secondName: '',
-                title: '',
-                address: '',
-                email: '',
-                telephone: '',
-                description: ''
+                personalInfo: [
+                    {firstName: ''},
+                    {secondName: ''},
+                    {title: ''},
+                    {address: ''},
+                    {email: ''},
+                    {telephone: ''},
+                    {description: ''},
+                ]
+            
             }
         };
         this.handleInputChange = this.handleInputChange.bind(this);
