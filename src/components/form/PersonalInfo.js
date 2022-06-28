@@ -9,30 +9,28 @@ const PersonalInfoWrapper = styled.div`
     
 `
 
-const inputFields = [
-    {tag: "firstName", placeholder: "First Name", id: uniqid()},
-    {tag: "secondName", placeholder: "Surname", id: uniqid()},
-    {tag: "title", placeholder: "Title", id: uniqid()},
-    {tag: "address", placeholder: "Address", id: uniqid()},
-    {tag: "email", placeholder: "Email", id: uniqid()},
-    {tag: "telephone", placeholder: "Telephone", id: uniqid()},
-]
-
 class PersonalInfo extends Component {    
     render() {
-        const cv = this.props.cv;
+        const inputItems = this.props.cv.pInfo;
+       
         return (
             <PersonalInfoWrapper>
                 <Section title="Personal Details">
-                   {inputFields.map((inputField) => {
-                    return <Input key={inputField.id} name= {inputField.tag} placeholder={inputField.placeholder} eHandler= {this.props.eHandler}
-                    value={this.props.cv[inputField.tag]}
-                    />
-                   })}
-                   <TextArea name="description" placeholder="Description" eHandler={this.props.eHandler}
-                   />
-
-                   
+                {
+                
+                Object.keys(inputItems).map((item) => {
+                    return (
+                        <Input 
+                        key={inputItems[item].id}
+                        name={inputItems[item].name}
+                        placeholder={inputItems[item].placeholder}
+                        eHandler={this.props.eHandler}
+                        value={inputItems[item].value}
+                        stateKey={item}
+                        />  
+                    )
+                })}
+                <TextArea name="description" placeholder="Description" eHandler={this.props.eHandler} value={inputItems["description"].value}/>       
                    
                 </Section>
             </PersonalInfoWrapper>   

@@ -16,7 +16,7 @@ class Content extends Component {
         return ( 
             <ContentWrapper>
                 <Title>Description</Title>
-                <p>{cv.description}</p>
+                <p>{cv["pInfo"]["description"].value}</p>
                 <Title>Experience</Title>
                 <Title>Education</Title>
             </ContentWrapper>

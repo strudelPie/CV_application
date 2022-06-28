@@ -18,11 +18,11 @@ class SideBar extends Component {
             <SideBarWrapper>
                 <Title>Personal Details</Title>
                 <Header>Adress</Header>
-                <p>{cv.address}</p>
+                <p>{cv["pInfo"]["address"].value}</p>
                 <Header>Email</Header>
-                <p>{cv.email}</p>
+                <p>{cv["pInfo"]["email"].value}</p>
                 <Header>Telephone</Header>
-                <p>{cv.telephone}</p>
+                <p>{cv["pInfo"]["telephone"].value}</p>
             </SideBarWrapper>
         )
     };

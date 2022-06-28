@@ -15,6 +15,7 @@ class TextArea extends Component {
                 placeholder={this.props.placeholder}
                 name={this.props.name}
                 onChange={this.props.eHandler}
+                value={this.props.value}
             />   
             
         )

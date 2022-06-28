@@ -21,8 +21,8 @@ class Header extends Component {
         const { cv } = this.props;
         return (
             <HeaderWrapper>
-                <FullName>{cv.firstName} {cv.secondName}</FullName>
-                <JobTitle>{cv.title}</JobTitle>
+                <FullName>{cv["pInfo"]["firstName"].value} {cv["pInfo"]["secondName"].value}</FullName>
+                <JobTitle>{cv["pInfo"]["title"].value}</JobTitle>
             </HeaderWrapper>
         )
     };

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import Form from '../form/Form'
 import Preview from '../preview/Preview'
+import uniqid from "uniqid";
 
 const Mainwrapper = styled.main`
     background-color: #00FFFF;
@@ -24,16 +25,51 @@ class Main extends Component {
 
         this.state = {
             cv: {
-                personalInfo: [
-                    {firstName: ''},
-                    {secondName: ''},
-                    {title: ''},
-                    {address: ''},
-                    {email: ''},
-                    {telephone: ''},
-                    {description: ''},
-                ]
-            
+                pInfo: {
+                    firstName: {
+                        value: '',
+                        name: 'firstName',
+                        placeholder: 'First Name',
+                        id: uniqid(),
+                    },
+                    secondName: {
+                        value: '',
+                        name: 'secondName',
+                        placeholder: 'Surname',
+                        id: uniqid(),
+                    },
+                    title: {
+                        value: '',
+                        name: 'title',
+                        placeholder: 'Title',
+                        id: uniqid(),
+                    },
+                    address: {
+                        value: '',
+                        name: 'address',
+                        placeholder: 'Address',
+                        id: uniqid(),
+                    },
+                    email: {
+                        value: '',
+                        name: 'email',
+                        placeholder: 'Email',
+                        id: uniqid(),
+                    },
+                    telephone: {
+                        value: '',
+                        name: 'telephone',
+                        placeholder: 'Telephone',
+                        id: uniqid(),
+                    },
+                    description: {
+                        value: '',
+                        name: 'description',
+                        placeholder: 'Description',
+                        id: uniqid(),
+                    },
+                }
+                    
             }
         };
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -41,13 +77,12 @@ class Main extends Component {
 
     handleInputChange(e) {
         const { name, value } = e.target
-        const { cv } = this.state;
+        const  state  = {...this.state};
+        state.cv["pInfo"][name].value = value;
+
         this.setState({
-            cv: {
-                ...cv,
-                [name] : value
-            }}
-        );
+            state
+        });
     }
 
     render() {

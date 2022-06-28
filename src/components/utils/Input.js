@@ -14,7 +14,7 @@ class Input extends Component {
                 type="text"
                 placeholder={this.props.placeholder}
                 name={this.props.name}
-                onChange={this.props.eHandler}
+                onChange={this.props.eHandler || console.log('test')}
                 value={this.props.value}
             />   
             
