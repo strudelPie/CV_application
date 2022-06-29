@@ -10,8 +10,8 @@ const Title = styled.h3`
     margin-top: 0
 `
 const Children = styled.div`
-  display: flex;
-  flex-direction: column
+
+
 `
 
 class Section extends Component {

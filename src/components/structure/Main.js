@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import Form from '../form/Form'
 import Preview from '../preview/Preview'
-import uniqid from "uniqid";
+import cv from "../utils/cvObj";
+import expItem from "../utils/experienceObj";
 
 const Mainwrapper = styled.main`
     background-color: #00FFFF;
@@ -24,72 +25,62 @@ class Main extends Component {
         super(props);
 
         this.state = {
-            cv: {
-                pInfo: {
-                    firstName: {
-                        value: '',
-                        name: 'firstName',
-                        placeholder: 'First Name',
-                        id: uniqid(),
-                    },
-                    secondName: {
-                        value: '',
-                        name: 'secondName',
-                        placeholder: 'Surname',
-                        id: uniqid(),
-                    },
-                    title: {
-                        value: '',
-                        name: 'title',
-                        placeholder: 'Title',
-                        id: uniqid(),
-                    },
-                    address: {
-                        value: '',
-                        name: 'address',
-                        placeholder: 'Address',
-                        id: uniqid(),
-                    },
-                    email: {
-                        value: '',
-                        name: 'email',
-                        placeholder: 'Email',
-                        id: uniqid(),
-                    },
-                    telephone: {
-                        value: '',
-                        name: 'telephone',
-                        placeholder: 'Telephone',
-                        id: uniqid(),
-                    },
-                    description: {
-                        value: '',
-                        name: 'description',
-                        placeholder: 'Description',
-                        id: uniqid(),
-                    },
-                }
-                    
-            }
+            cv
         };
         this.handleInputChange = this.handleInputChange.bind(this);
+
+        this.handleAddSection = this.handleAddSection.bind(this);
+    }
+    
+    updateObject(object, newValue, path){
+        var stack = path.split('.');
+      
+        while(stack.length > 1){
+          object = object[stack.shift()];
+        }
+      
+        object[stack.shift()] = newValue;
     }
 
     handleInputChange(e) {
         const { name, value } = e.target
-        const  state  = {...this.state};
-        state.cv["pInfo"][name].value = value;
+        
+        const  currentState  = {...this.state};
+        const path = "cv." + name + ".value";
+        this.updateObject(currentState, value, path)
 
         this.setState({
-            state
+            state: currentState
         });
     }
 
+    handleAddSection(e) {
+        const currentState = {...this.state.cv};
+        // const filteredItems = Object.entries(currentState)
+        //     .filter(([key,value]) => key.includes('experience'))
+        //     .reduce((obj, [key, value]) => {
+        //         obj[key] = value;
+        //         return obj;
+        //     }, {});
+
+        
+        this.setState({
+            ...this.state.cv,
+            experience: {
+                ...this.state.experience,
+                ...expItem
+            },
+        })
+        console.log(this.state.cv)
+    }
+
     render() {
+
         return (
             <Mainwrapper>
-                <Form cv={this.state.cv} eHandler={this.handleInputChange} />
-                <Preview cv={this.state.cv}/>
+                <Form cv={this.state.cv} eHandler={this.handleInputChange}
+                addSection={this.handleAddSection}/>
+                <Preview cv={this.state.cv} />
             </Mainwrapper>
         )
     };

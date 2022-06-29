@@ -2,35 +2,40 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import Section from "../utils/Section";
 import Input from "../utils/Input";
-import uniqid from "uniqid";
-import TextArea from "../utils/TextArea";
 
 const PersonalInfoWrapper = styled.div`
-    
+
+`
+
+const TextArea = styled.textarea.attrs({rows: "4"})`
+    width: 100%;
+    height: 100%; 
+    box-sizing: border-box;
+    }    
 `
 
 class PersonalInfo extends Component {    
     render() {
         const inputItems = this.props.cv.pInfo;
+
+        const filteredItems = Object.entries(inputItems)
+            .filter(([key,value]) => !key.includes('description'))
+            .reduce((obj, [key, value]) => {
+                obj[key] = value;
+                return obj;
+              }, {});
+
+        const stateSection = 'pInfo.'
+        const txtAreaName = stateSection.concat("description");
        
         return (
             <PersonalInfoWrapper>
                 <Section title="Personal Details">
-                {
+                <Input inputItems={filteredItems} 
+                stateSection={stateSection}
+                eHandler={this.props.eHandler}/>
                 
-                Object.keys(inputItems).map((item) => {
-                    return (
-                        <Input 
-                        key={inputItems[item].id}
-                        name={inputItems[item].name}
-                        placeholder={inputItems[item].placeholder}
-                        eHandler={this.props.eHandler}
-                        value={inputItems[item].value}
-                        stateKey={item}
-                        />  
-                    )
-                })}
-                <TextArea name="description" placeholder="Description" eHandler={this.props.eHandler} value={inputItems["description"].value}/>       
+                <TextArea name={txtAreaName} placeholder="Description" onChange={this.props.eHandler} value={inputItems["description"].value}/>       
                    
                 </Section>
             </PersonalInfoWrapper>   
