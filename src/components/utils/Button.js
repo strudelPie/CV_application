@@ -23,7 +23,7 @@ const ButtonWrapper = styled.button`
 class Button extends Component {
     render() {
         return (
-            <ButtonWrapper onClick={this.props.onClick}>{this.props.text}</ButtonWrapper>
+            <ButtonWrapper id={this.props.id} onClick={this.props.onClick}>{this.props.text}</ButtonWrapper>
         )
     };
 }

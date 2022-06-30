@@ -15,7 +15,7 @@ class Form extends Component {
         return (
             <FormWrapper>
                 <PersonalInfo cv={this.props.cv} eHandler={this.props.eHandler}/>
-                <Experience cv={this.props.cv} eHandler={this.props.eHandler}addSection={this.props.addSection}/>
+                <Experience cv={this.props.cv} eHandler={this.props.eHandler} addSection={this.props.addSection} deleteSection={this.props.deleteSection}/>
                 
 
             </FormWrapper>

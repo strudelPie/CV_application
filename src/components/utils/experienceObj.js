@@ -1,9 +1,11 @@
 import uniqid from "uniqid";
 
+let exId = uniqid();
+
 const expItem = {
-    [uniqid()] : {
+    [exId] : {
         position: {
-            value: '',
+            value: 'Junior Dev',
             placeholder: 'Position',
             id: uniqid(),
         },
@@ -30,4 +32,4 @@ const expItem = {
     }
 }
 
-export default expItem;
+export { expItem, exId };

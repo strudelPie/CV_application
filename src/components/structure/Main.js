@@ -3,7 +3,8 @@ import styled from "styled-components";
 import Form from '../form/Form'
 import Preview from '../preview/Preview'
 import cv from "../utils/cvObj";
-import expItem from "../utils/experienceObj";
+import { expItem, exId } from "../utils/experienceObj";
+import uniqid from "uniqid";
 
 const Mainwrapper = styled.main`
     background-color: #00FFFF;
@@ -30,9 +31,11 @@ class Main extends Component {
         this.handleInputChange = this.handleInputChange.bind(this);
 
         this.handleAddSection = this.handleAddSection.bind(this);
+
+        this.handleDeleteSection = this.handleDeleteSection.bind(this);
     }
     
-    updateObject(object, newValue, path){
+    updateNestedState(object, newValue, path){
         var stack = path.split('.');
       
         while(stack.length > 1){
@@ -45,33 +48,45 @@ class Main extends Component {
     handleInputChange(e) {
         const { name, value } = e.target
         
-        const  currentState  = {...this.state};
-        const path = "cv." + name + ".value";
-        this.updateObject(currentState, value, path)
+        const  currentState  = {...this.state.cv};
+        const path = name + ".value";
+        this.updateNestedState(currentState, value, path)
 
         this.setState({
-            state: currentState
-        });
+            cv: currentState },
+        );
     }
 
-    handleAddSection(e) {
+    handleAddSection() {
         const currentState = {...this.state.cv};
-        // const filteredItems = Object.entries(currentState)
-        //     .filter(([key,value]) => key.includes('experience'))
-        //     .reduce((obj, [key, value]) => {
-        //         obj[key] = value;
-        //         return obj;
-        //     }, {});
 
+        const newState = {
+            ...currentState,
+            experience: {
+                ...currentState.experience, 
+                [uniqid()] : expItem[exId]
+            }
+        }
+        this.setState({
+            cv: newState }, () =>
+            console.log(this.state)
+        );
+    }
+
+    handleDeleteSection(e) {
+        const { id } = e.target
+        const currentState = {...this.state.cv};
+        
+        const { [id]: _, ...restOfExp } = currentState.experience;
+        const newState = {
+            ...currentState,
+            experience: { ...restOfExp }
+        };
         
         this.setState({
-            ...this.state.cv,
-            experience: {
-                ...this.state.experience,
-                ...expItem
-            },
-        })
-        console.log(this.state.cv)
+            cv: newState }, () =>
+            console.log(this.state)
+        );
     }
 
     render() {
@@ -79,7 +94,7 @@ class Main extends Component {
         return (
             <Mainwrapper>
                 <Form cv={this.state.cv} eHandler={this.handleInputChange}
-                addSection={this.handleAddSection}/>
+                addSection={this.handleAddSection} deleteSection={this.handleDeleteSection}/>
                 <Preview cv={this.state.cv} />
             </Mainwrapper>
         )

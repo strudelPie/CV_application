@@ -41,7 +41,7 @@ const cv = {
     experience: {
         [uniqid()] : {
             position: {
-                value: '',
+                value: 'Senior Dev',
                 placeholder: 'Position',
                 id: uniqid(),
             },
