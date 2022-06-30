@@ -1,22 +1,22 @@
 import uniqid from "uniqid";
 
-let exId = uniqid();
+let edId = uniqid();
 
-const expItem = {
-    [exId] : {
-        position: {
+const edItem = {
+    [edId] : {
+        institution: {
             value: '',
-            placeholder: 'Position',
+            placeholder: 'Institution',
             id: uniqid(),
         },
-        organisation: {
+        city: {
             value: '',
-            placeholder: 'Organisation',
+            placeholder: 'City',
             id: uniqid(),
         },
-        location: {
+        qualification: {
             value: '',
-            placeholder: 'Location',
+            placeholder: 'Qualification',
             id: uniqid(),
         },
         from: {
@@ -32,4 +32,4 @@ const expItem = {
     }
 }
 
-export { expItem, exId };
+export { edItem , edId };

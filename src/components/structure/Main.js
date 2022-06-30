@@ -5,6 +5,7 @@ import Preview from '../preview/Preview'
 import cv from "../utils/cvObj";
 import { expItem, exId } from "../utils/experienceObj";
 import uniqid from "uniqid";
+import { edItem, edId } from "../utils/educationObj";
 
 const Mainwrapper = styled.main`
     background-color: #00FFFF;
@@ -57,14 +58,15 @@ class Main extends Component {
         );
     }
 
-    handleAddSection() {
+    handleAddSection(e) {
+        const { name } = e.target
         const currentState = {...this.state.cv};
 
         const newState = {
             ...currentState,
-            experience: {
-                ...currentState.experience, 
-                [uniqid()] : expItem[exId]
+            [name]: {
+                ...currentState[name], 
+                [uniqid()] : ( name === "experience" ? expItem[exId] : edItem[edId])
             }
         }
         this.setState({
@@ -74,13 +76,13 @@ class Main extends Component {
     }
 
     handleDeleteSection(e) {
-        const { id } = e.target
+        const { id, name } = e.target
         const currentState = {...this.state.cv};
-        
-        const { [id]: _, ...restOfExp } = currentState.experience;
+
+        const { [id]: _, ...restOfObjSection } = currentState[name];
         const newState = {
             ...currentState,
-            experience: { ...restOfExp }
+            [name]: { ...restOfObjSection }
         };
         
         this.setState({

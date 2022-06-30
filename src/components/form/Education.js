@@ -6,41 +6,41 @@ import Button from "../utils/Button";
 import uniqid from "uniqid";
 
 
-const ExperienceWrapper = styled.div`
+const EducationWrapper = styled.div`
     
 }`
 
-const ExperienceSectionWrapper = styled.div`
+const EducationSectionWrapper = styled.div`
     
 }`
 
-class Experience extends Component {    
+class Education extends Component {    
     render() {
-        const inputItems = this.props.cv.experience;
+        const inputItems = this.props.cv.education;
 
         return (
-            <ExperienceWrapper>
-                <InputSection title="Experience">
+            <EducationWrapper>
+                <InputSection title="Education">
                 {Object.entries(inputItems).map(([key, item]) => {
-                    const stateSection = 'experience.' + key + ".";
+                    const stateSection = 'education.' + key + ".";
                     
                     return (
-                        <ExperienceSectionWrapper key={uniqid()}>
+                        <EducationSectionWrapper key={uniqid()}>
                             <Input
                             key={key}
                             inputItems={inputItems[key]} 
                             stateSection={stateSection}
                             eHandler={this.props.eHandler}/>
-                            <Button id={key} text="Delete" onClick={this.props.deleteSection} eHandlerType="experience"/>
-                        </ExperienceSectionWrapper>
+                            <Button id={key} text="Delete" onClick={this.props.deleteSection} eHandlerType="education"/>
+                        </EducationSectionWrapper>
                     )})}
                     
-                    <Button eHandlerType="experience" text="Add" onClick={this.props.addSection}/>
+                    <Button text="Add" onClick={this.props.addSection} eHandlerType="education"/>
                 </InputSection>
-            </ExperienceWrapper>
+            </EducationWrapper>
            
         )
     };
 }
 
-export default Experience;
+export default Education;

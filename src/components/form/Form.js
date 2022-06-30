@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import PersonalInfo from "./PersonalInfo";
 import Experience from "./Experience";
+import Education from "./Education";
 
 
 const FormWrapper = styled.div`
@@ -16,7 +17,7 @@ class Form extends Component {
             <FormWrapper>
                 <PersonalInfo cv={this.props.cv} eHandler={this.props.eHandler}/>
                 <Experience cv={this.props.cv} eHandler={this.props.eHandler} addSection={this.props.addSection} deleteSection={this.props.deleteSection}/>
-                
+                <Education cv={this.props.cv} eHandler={this.props.eHandler} addSection={this.props.addSection} deleteSection={this.props.deleteSection}/>
 
             </FormWrapper>
         )

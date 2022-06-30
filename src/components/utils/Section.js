@@ -14,7 +14,7 @@ const Children = styled.div`
 
 `
 
-class Section extends Component {
+class InputSection extends Component {
     render() {
         return (
             <SectionWrapper>
@@ -25,4 +25,4 @@ class Section extends Component {
     };
 }
 
-export default Section;
+export default InputSection;

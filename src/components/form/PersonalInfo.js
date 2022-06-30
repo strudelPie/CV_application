@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import Section from "../utils/Section";
+import InputSection from "../utils/Section";
 import Input from "../utils/Input";
 
 const PersonalInfoWrapper = styled.div`
@@ -23,21 +23,21 @@ class PersonalInfo extends Component {
             .reduce((obj, [key, value]) => {
                 obj[key] = value;
                 return obj;
-              }, {});
+            }, {});
 
         const stateSection = 'pInfo.'
         const txtAreaName = stateSection.concat("description");
        
         return (
             <PersonalInfoWrapper>
-                <Section title="Personal Details">
+                <InputSection title="Personal Details">
                 <Input inputItems={filteredItems} 
                 stateSection={stateSection}
                 eHandler={this.props.eHandler}/>
                 
                 <TextArea name={txtAreaName} placeholder="Description" onChange={this.props.eHandler} value={inputItems["description"].value}/>       
                    
-                </Section>
+                </InputSection>
             </PersonalInfoWrapper>   
         )
     };

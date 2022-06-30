@@ -41,7 +41,7 @@ const cv = {
     experience: {
         [uniqid()] : {
             position: {
-                value: 'Senior Dev',
+                value: '',
                 placeholder: 'Position',
                 id: uniqid(),
             },
@@ -66,7 +66,36 @@ const cv = {
                 id: uniqid(),
             }
         }
-    }       
+    },  
+    education: {
+        [uniqid()] : {
+            institution: {
+                value: '',
+                placeholder: 'Institution',
+                id: uniqid(),
+            },
+            city: {
+                value: '',
+                placeholder: 'City',
+                id: uniqid(),
+            },
+            qualification: {
+                value: '',
+                placeholder: 'Qualification',
+                id: uniqid(),
+            },
+            from: {
+                value: '',
+                placeholder: 'From',
+                id: uniqid(),
+            },
+            to: {
+                value: '',
+                placeholder: 'To',
+                id: uniqid(),
+            }
+        } 
+    }
 }
 
 export default cv;

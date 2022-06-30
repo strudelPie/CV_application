@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import InputSection from "../utils/Section";
 
 const ContentWrapper = styled.div`
     background-color: #DEB887;
