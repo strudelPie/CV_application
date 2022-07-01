@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 
+
 const InputWrapper = styled.input`
     height: 50px;
     background-color: white;

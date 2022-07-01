@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import Form from '../form/Form'
-import Preview from '../preview/Preview'
-import cv from "../utils/cvObj";
-import { expItem, exId } from "../utils/experienceObj";
+import Form from './form/Form'
+import Preview from './preview/Preview'
+import cv from "./utils/cvObj";
+import { createExpItm } from "./utils/experienceObj";
 import uniqid from "uniqid";
-import { edItem, edId } from "../utils/educationObj";
+import { createEduItm } from "./utils/educationObj";
 
 const Mainwrapper = styled.main`
     background-color: #00FFFF;
@@ -62,11 +62,13 @@ class Main extends Component {
         const { name } = e.target
         const currentState = {...this.state.cv};
 
+        const importItem = ( name === "experience") ? createExpItm() : createEduItm();
+
         const newState = {
             ...currentState,
             [name]: {
                 ...currentState[name], 
-                [uniqid()] : ( name === "experience" ? expItem[exId] : edItem[edId])
+                [uniqid()] : importItem
             }
         }
         this.setState({

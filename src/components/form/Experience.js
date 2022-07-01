@@ -21,13 +21,12 @@ class Experience extends Component {
         return (
             <ExperienceWrapper>
                 <InputSection title="Experience">
-                {Object.entries(inputItems).map(([key, item]) => {
+                {Object.keys(inputItems).map((key) => {
                     const stateSection = 'experience.' + key + ".";
                     
                     return (
-                        <ExperienceSectionWrapper key={uniqid()}>
+                        <ExperienceSectionWrapper key={key}>
                             <Input
-                            key={key}
                             inputItems={inputItems[key]} 
                             stateSection={stateSection}
                             eHandler={this.props.eHandler}/>

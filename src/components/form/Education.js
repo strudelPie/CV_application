@@ -21,13 +21,12 @@ class Education extends Component {
         return (
             <EducationWrapper>
                 <InputSection title="Education">
-                {Object.entries(inputItems).map(([key, item]) => {
+                {Object.keys(inputItems).map((key) => {
                     const stateSection = 'education.' + key + ".";
                     
                     return (
-                        <EducationSectionWrapper key={uniqid()}>
+                        <EducationSectionWrapper key={key}>
                             <Input
-                            key={key}
                             inputItems={inputItems[key]} 
                             stateSection={stateSection}
                             eHandler={this.props.eHandler}/>
