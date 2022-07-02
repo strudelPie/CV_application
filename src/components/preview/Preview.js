@@ -6,15 +6,14 @@ import SideBar from "./SideBar";
 
 
 const PreviewWrapper = styled.div`
-    background-color: #F5F5DC;
-    height: 500px;
-    width: 100%;
-`
-
-const BodyWrapper = styled.div`
+    width: 210mm;
+    height: 297mm;
+    position: sticky;
+    top: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     display: grid;
-    grid-template-columns: 70% 30%;
-    
+    grid-template-columns: 150mm 60mm;
+    grid-template-rows: 35mm 262mm;
 `
 
 class Preview extends Component {
@@ -23,10 +22,8 @@ class Preview extends Component {
         return (
             <PreviewWrapper>
                 <Header cv={cv}/>
-                <BodyWrapper>
-                    <Content cv={cv}/>
-                    <SideBar cv={cv}/>
-                </BodyWrapper>
+                <Content cv={cv}/>
+                <SideBar cv={cv}/>
             </PreviewWrapper>
         )
     };

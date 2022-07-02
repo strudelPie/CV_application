@@ -3,18 +3,41 @@ import styled from "styled-components";
 import PersonalInfo from "./PersonalInfo";
 import Experience from "./Experience";
 import Education from "./Education";
+import MenuButton from "../utils/MenuButton";
 
 
 const FormWrapper = styled.div`
-    background-color: #E0E0E0;
-    width: 100%;
-    border-color: #7FFFD4;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background-color: #E1EBEE;
+    width: 210mm;
+    gap: 1rem;
+    padding: 1rem;
+    box-sizing:border-box;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }`
+
+const Menu = styled.div`
+    display: flex;
+    flex-direction: row;
+    height: 45%;
+    gap: 1rem;
+    max-height: 3rem;
+    
+}    
+`
 
 class Form extends Component {    
     render() {
         return (
             <FormWrapper>
+                <Menu >
+                    <MenuButton text="Display Example" onClick={this.props.genExample}/>
+                    <MenuButton text="Reset" onClick={this.props.reset}/>
+                    <MenuButton text="Export PDF"/>
+                </Menu>
                 <PersonalInfo cv={this.props.cv} eHandler={this.props.eHandler}/>
                 <Experience cv={this.props.cv} eHandler={this.props.eHandler} addSection={this.props.addSection} deleteSection={this.props.deleteSection}/>
                 <Education cv={this.props.cv} eHandler={this.props.eHandler} addSection={this.props.addSection} deleteSection={this.props.deleteSection}/>

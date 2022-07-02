@@ -6,12 +6,12 @@ import cv from "./utils/cvObj";
 import { createExpItm } from "./utils/experienceObj";
 import uniqid from "uniqid";
 import { createEduItm } from "./utils/educationObj";
+import exampleCV from "./utils/exampleCvObj";
 
 const Mainwrapper = styled.main`
-    background-color: #00FFFF;
-    min-height: 500px;
+    background-color: #F0F8FF;
     display: flex;
-    align-items: flex start;
+   
     justify-content: space-evenly;
     padding: 3rem 5rem;
     gap: 3rem;
@@ -34,6 +34,10 @@ class Main extends Component {
         this.handleAddSection = this.handleAddSection.bind(this);
 
         this.handleDeleteSection = this.handleDeleteSection.bind(this);
+
+        this.generateExample = this.generateExample.bind(this);
+
+        this.reset = this.reset.bind(this);
     }
     
     updateNestedState(object, newValue, path){
@@ -62,7 +66,7 @@ class Main extends Component {
         const { name } = e.target
         const currentState = {...this.state.cv};
 
-        const importItem = ( name === "experience") ? createExpItm() : createEduItm();
+        const importItem = (name === "experience") ? createExpItm() : createEduItm();
 
         const newState = {
             ...currentState,
@@ -72,9 +76,8 @@ class Main extends Component {
             }
         }
         this.setState({
-            cv: newState }, () =>
-            console.log(this.state)
-        );
+            cv: newState 
+        });
     }
 
     handleDeleteSection(e) {
@@ -88,9 +91,22 @@ class Main extends Component {
         };
         
         this.setState({
-            cv: newState }, () =>
-            console.log(this.state)
-        );
+            cv: newState
+        });
+    }
+
+    generateExample() {
+        const newState = exampleCV;
+
+        this.setState({
+            cv: newState,
+        });
+    }
+
+    reset() {
+        this.setState({
+            cv
+        });
     }
 
     render() {
@@ -98,7 +114,8 @@ class Main extends Component {
         return (
             <Mainwrapper>
                 <Form cv={this.state.cv} eHandler={this.handleInputChange}
-                addSection={this.handleAddSection} deleteSection={this.handleDeleteSection}/>
+                addSection={this.handleAddSection} deleteSection={this.handleDeleteSection} genExample={this.generateExample}
+                reset={this.reset}/>
                 <Preview cv={this.state.cv} />
             </Mainwrapper>
         )

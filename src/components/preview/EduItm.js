@@ -2,15 +2,21 @@ import React, { Component } from "react";
 import styled from "styled-components";
 
 const EduItemWrapper = styled.div`
-    
+    display: flex;
+    box-sizing: border-box;
+    margin-bottom: 1rem;  
 `
 
 const Duration = styled.div`
-
+    width: 25%;
+    margin-right: 2rem;
 `
 
 const Details = styled.div`
-
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 `
 
 class EduItm extends Component {
@@ -27,7 +33,7 @@ class EduItm extends Component {
                 <Duration>{from} - {to}</Duration>
                 <Details>
                     <div>{institution}</div>
-                    <div>{qualification} {city}</div>
+                    <div>{qualification}, {city}</div>
                 </Details>
            </EduItemWrapper>
         )

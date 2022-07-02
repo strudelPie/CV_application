@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 
-const ButtonWrapper = styled.button`
-    background-color: #f4511e;
+const Button = styled.button`
+    background-color: #4C516D;
     border: none;
     color: white;
-    padding: 16px 32px;
+    padding: 10px 15px;
     text-align: center;
     font-size: 16px;
     opacity: 0.6;
@@ -15,17 +15,20 @@ const ButtonWrapper = styled.button`
     cursor: pointer;
     width: 100%;
     box-sizing: border-box;
+    border-radius: 5px;
+    margin-top: 0.5rem;
+    white-space: nowrap;
 
     :hover {opacity: 1}
     }    
 `
 
-class Button extends Component {
+class MenuButton extends Component {
     render() {
         return (
-            <ButtonWrapper name={this.props.eHandlerType} id={this.props.id} onClick={this.props.onClick}>{this.props.text}</ButtonWrapper>
+            <Button onClick={this.props.onClick}>{this.props.text}</Button>
         )
     };
 }
 
-export default Button;
+export default MenuButton;

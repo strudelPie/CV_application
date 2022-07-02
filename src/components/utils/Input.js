@@ -3,15 +3,24 @@ import styled from "styled-components";
 
 
 const InputWrapper = styled.input`
-    height: 50px;
     background-color: white;
-    }    
+    border-radius: 5px;
+    border: 1px solid transparent;
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid transparent;
+    padding: 0.5rem;  
+
+    &:focus {
+        border: 1px solid #aaa;
+      }
+    }        
 `
 const InputSectionWrapper = styled.div`
-    height: 200px;
-    background-color: white;
     display: flex;
-    flex-direction: column
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 0.5rem;  
     }    
 `
 

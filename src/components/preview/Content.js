@@ -7,30 +7,27 @@ import uniqid from "uniqid";
 
 
 const ContentWrapper = styled.div`
-    background-color: #DEB887;
+    background-color: white;
+    padding: 1.5rem;
 `
-const Title = styled.h3`
-    
-`
- const Header = styled.h4`
- `
 
 class Content extends Component {
     render() {
         const { cv } = this.props;
         return ( 
             <ContentWrapper>
-                <Title>Description</Title>
-                <p>{cv["pInfo"]["description"].value}</p>
-                <Section title="Experience">
-                    {Object.keys(cv.experience).map((key) => {
+                <Section border title="Description">
+                    <p>{cv["pInfo"]["description"].value}</p>
+                </Section>
+                <Section title="Experience" border>
+                {Object.keys(cv.experience).map((key) => {
                             return(
                             <ExpItem key={key} id={key} cv={cv}
                             />
                             )
                         })}
                 </Section>
-                <Section title="Education">
+                <Section title="Education" border>
                     {Object.keys(cv.education).map((key) => {
                             return(
                             <EduItm key={key} id={key} cv={cv}

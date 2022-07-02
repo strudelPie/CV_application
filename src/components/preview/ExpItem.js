@@ -3,23 +3,23 @@ import styled from "styled-components";
 
 const ExpItemWrapper = styled.div`
     display: flex;
-    flex-direction: row;
-
-    
+    box-sizing: border-box;
+    margin-bottom: 1rem;    
     
 `
 
 const Duration = styled.div`
-   width: 40%;
+    width: 25%;
+    margin-right: 2rem;
   
     
 `
 
 const Details = styled.div`
-    display: flex row;
-    justify-content: space-evenly;
-    height: 100px;
-    row-gap: 25px;
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
     
 `
 
@@ -36,8 +36,8 @@ class ExpItem extends Component {
            <ExpItemWrapper>
                 <Duration>{from} - {to}</Duration>
                 <Details>
-                    <div>{position}</div>
-                    <div>{organisation} {location}</div>
+                    <div><b>{position}</b></div>
+                    <div>{organisation}, {location}</div>
                 </Details>
            </ExpItemWrapper>
         )

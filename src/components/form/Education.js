@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import InputSection from "../utils/Section";
+import Section from "../utils/Section";
 import Input from "../utils/Input";
-import Button from "../utils/Button";
+import InputButton from "../utils/InputButton";
 import uniqid from "uniqid";
 
 
@@ -20,7 +20,7 @@ class Education extends Component {
 
         return (
             <EducationWrapper>
-                <InputSection title="Education">
+                <Section title="Education">
                 {Object.keys(inputItems).map((key) => {
                     const stateSection = 'education.' + key + ".";
                     
@@ -30,12 +30,12 @@ class Education extends Component {
                             inputItems={inputItems[key]} 
                             stateSection={stateSection}
                             eHandler={this.props.eHandler}/>
-                            <Button id={key} text="Delete" onClick={this.props.deleteSection} eHandlerType="education"/>
+                            <InputButton id={key} text="Delete" onClick={this.props.deleteSection} eHandlerType="education"/>
                         </EducationSectionWrapper>
                     )})}
                     
-                    <Button text="Add" onClick={this.props.addSection} eHandlerType="education"/>
-                </InputSection>
+                    <InputButton text="Add" onClick={this.props.addSection} eHandlerType="education"/>
+                </Section>
             </EducationWrapper>
            
         )

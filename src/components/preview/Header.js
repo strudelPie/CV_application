@@ -2,16 +2,26 @@ import React, { Component } from "react";
 import styled from "styled-components";
 
 const HeaderWrapper = styled.div`
-    background-color:#5F9EA0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    grid-column: span 2;
+    padding: 1.5rem;
+    line-height: 2.5rem;
+    background-color: #4C516D;
+    color: white;
+
 }`
 
 const FullName = styled.h1`
     margin: 0;
+    font-size: 2.5rem;
    
 }`
 
 const JobTitle = styled.h3`
     margin: 0;
+    font-size: 1.5rem;
    
 }`
 

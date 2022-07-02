@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import InputSection from "../utils/Section";
+import Section from "../utils/Section";
 import Input from "../utils/Input";
-import Button from "../utils/Button";
-import uniqid from "uniqid";
-
+import InputButton from "../utils/InputButton";
 
 const ExperienceWrapper = styled.div`
     
@@ -20,7 +18,7 @@ class Experience extends Component {
 
         return (
             <ExperienceWrapper>
-                <InputSection title="Experience">
+                <Section title="Experience">
                 {Object.keys(inputItems).map((key) => {
                     const stateSection = 'experience.' + key + ".";
                     
@@ -30,12 +28,12 @@ class Experience extends Component {
                             inputItems={inputItems[key]} 
                             stateSection={stateSection}
                             eHandler={this.props.eHandler}/>
-                            <Button id={key} text="Delete" onClick={this.props.deleteSection} eHandlerType="experience"/>
+                            <InputButton id={key} text="Delete" onClick={this.props.deleteSection} eHandlerType="experience"/>
                         </ExperienceSectionWrapper>
                     )})}
                     
-                    <Button eHandlerType="experience" text="Add" onClick={this.props.addSection}/>
-                </InputSection>
+                    <InputButton eHandlerType="experience" text="Add" onClick={this.props.addSection}/>
+                </Section>
             </ExperienceWrapper>
            
         )

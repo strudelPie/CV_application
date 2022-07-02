@@ -1,17 +1,32 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import InputSection from "../utils/Section";
+import Section from "../utils/Section";
 import Input from "../utils/Input";
 
 const PersonalInfoWrapper = styled.div`
-
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 `
 
-const TextArea = styled.textarea.attrs({rows: "4"})`
-    width: 100%;
-    height: 100%; 
+const TextArea = styled.textarea.attrs({rows: "4"})`    
     box-sizing: border-box;
-    }    
+    width: 100%;
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid transparent;
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid transparent;
+    padding: 0.5rem;    
+    margin-top: 0.5rem;
+    resize: vertical;
+
+    &:focus {
+        border: 1px solid #aaa;
+    }
+}   
+      
 `
 
 class PersonalInfo extends Component {    
@@ -30,14 +45,13 @@ class PersonalInfo extends Component {
        
         return (
             <PersonalInfoWrapper>
-                <InputSection title="Personal Details">
-                <Input inputItems={filteredItems} 
-                stateSection={stateSection}
-                eHandler={this.props.eHandler}/>
-                
-                <TextArea name={txtAreaName} placeholder="Description" onChange={this.props.eHandler} value={inputItems["description"].value}/>       
-                   
-                </InputSection>
+                <Section title="Personal Details">
+                    <Input inputItems={filteredItems} 
+                    stateSection={stateSection}
+                    eHandler={this.props.eHandler}/>
+                    
+                    <TextArea name={txtAreaName} placeholder="Description" onChange={this.props.eHandler} value={inputItems["description"].value}/>       
+                </Section>
             </PersonalInfoWrapper>   
         )
     };
