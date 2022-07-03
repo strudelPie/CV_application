@@ -103,4 +103,8 @@ const cv = {
     }
 }
 
-export default cv;
+const createCVItm = () => {
+    return cv;
+}
+
+export { cv, createCVItm };

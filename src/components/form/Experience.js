@@ -24,7 +24,7 @@ class Experience extends Component {
                     
                     return (
                         <ExperienceSectionWrapper key={key}>
-                            <Input
+                            <Input type="text"
                             inputItems={inputItems[key]} 
                             stateSection={stateSection}
                             eHandler={this.props.eHandler}/>

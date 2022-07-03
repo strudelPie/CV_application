@@ -14,7 +14,9 @@ const InputWrapper = styled.input`
     &:focus {
         border: 1px solid #aaa;
       }
-    }        
+    }   
+    
+    display: ${props => props.file ?  `none` : "" };
 `
 const InputSectionWrapper = styled.div`
     display: flex;
@@ -34,7 +36,7 @@ class Input extends Component {
                     let path = stateSection.concat(key);
                     return (
                         <InputWrapper
-                        type="text"
+                        type={this.props.type}
                         key={item.id}
                         name={path}
                         placeholder={item.placeholder}

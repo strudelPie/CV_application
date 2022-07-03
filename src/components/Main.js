@@ -2,12 +2,11 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import Form from './form/Form'
 import Preview from './preview/Preview'
-import cv from "./utils/cvObj";
+import { cv, createCVItm } from "./utils/cvObj";
 import { createExpItm } from "./utils/experienceObj";
 import uniqid from "uniqid";
 import { createEduItm } from "./utils/educationObj";
 import exampleCV from "./utils/exampleCvObj";
-import { useReactToPrint } from "react-to-print";
 
 const Mainwrapper = styled.main`
     background-color: #F0F8FF;
@@ -24,6 +23,7 @@ const Mainwrapper = styled.main`
 }`
 
 class Main extends Component {
+
     constructor(props) {
         super(props);
 
@@ -42,9 +42,12 @@ class Main extends Component {
         this.generateExample = this.generateExample.bind(this);
 
         this.reset = this.reset.bind(this);
+
+        this.handleAddPhoto = this.handleAddPhoto.bind(this);
+
     }
     
-    updateNestedState(object, newValue, path){
+    updateNestedObj(object, newValue, path){
         var stack = path.split('.');
       
         while(stack.length > 1){
@@ -55,15 +58,18 @@ class Main extends Component {
     }
 
     handleInputChange(e) {
-        const { name, value } = e.target
-        
-        const  currentState  = {...this.state.cv};
+        const { name, value } = e.target;
         const path = name + ".value";
-        this.updateNestedState(currentState, value, path)
-
-        this.setState({
-            cv: currentState },
-        );
+        
+        this.setState(prevState => {
+            const currentState = {...prevState.cv};
+            
+            this.updateNestedObj(currentState, value, path)
+            
+            return {
+                cv: currentState,
+            }
+        });
     }
 
     handleAddSection(e) {
@@ -108,19 +114,36 @@ class Main extends Component {
     }
 
     reset() {
-        this.setState({
-            cv
-        });
+        const newCV = createCVItm();
+        this.setState(prevState => {   
+            return {
+                ...prevState,
+                cv: newCV,
+            }
+        })
+       
     }
 
-    render() {
-        const printContent = this.printRef.current;
+    handleAddPhoto(e) {
+        const { name } = e.target
+        const  currentState  = {...this.state.cv};
+        const path = name + ".value";
+        const file = e.target.files[0];
+        const img = URL.createObjectURL(file);
         
+        this.updateNestedObj(currentState, img, path)
+
+        this.setState({
+            cv: currentState },
+        );
+    }
+
+    render() {        
         return (
             <Mainwrapper>
                 <Form cv={this.state.cv} eHandler={this.handleInputChange}
                 addSection={this.handleAddSection} deleteSection={this.handleDeleteSection} genExample={this.generateExample}
-                reset={this.reset} print={this.printRef}/>
+                reset={this.reset} print={this.printRef}  addPhoto={this.handleAddPhoto} />
                 <Preview cv={this.state.cv} ref={el => (this.printRef = el)}/>
             </Mainwrapper>
         )

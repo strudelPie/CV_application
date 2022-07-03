@@ -26,7 +26,7 @@ class Education extends Component {
                     
                     return (
                         <EducationSectionWrapper key={key}>
-                            <Input
+                            <Input type="text"
                             inputItems={inputItems[key]} 
                             stateSection={stateSection}
                             eHandler={this.props.eHandler}/>

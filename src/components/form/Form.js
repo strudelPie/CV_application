@@ -44,7 +44,7 @@ class Form extends Component {
                           content={() => this.props.print}
                     />
                 </Menu>
-                <PersonalInfo cv={this.props.cv} eHandler={this.props.eHandler}/>
+                <PersonalInfo cv={this.props.cv} eHandler={this.props.eHandler} addPhoto={this.props.addPhoto} />
                 <Experience cv={this.props.cv} eHandler={this.props.eHandler} addSection={this.props.addSection} deleteSection={this.props.deleteSection}/>
                 <Education cv={this.props.cv} eHandler={this.props.eHandler} addSection={this.props.addSection} deleteSection={this.props.deleteSection}/>
 

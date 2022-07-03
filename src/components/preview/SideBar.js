@@ -27,7 +27,6 @@ const Photo = styled.img`
 class SideBar extends Component {
     render() {
         const { cv } = this.props;
-        console.log(cv)
         return ( 
             <SideBarWrapper>
                 <Photo src={cv["pInfo"]["photo"].value}/>
