@@ -19,12 +19,21 @@ const SideBarWrapper = styled.div`
     margin-bottom: 2rem;
 `
 
+const Photo = styled.img`
+    width: 100%;
+    margin-bottom: 2rem;
+`
+
 class SideBar extends Component {
     render() {
         const { cv } = this.props;
+        console.log(cv)
         return ( 
             <SideBarWrapper>
+                <Photo src={cv["pInfo"]["photo"].value}/>
+                
                 <Section title="Personal Details" border>
+                
                     <Header>Address</Header>
 
                     <Detail>{cv["pInfo"]["address"].value}</Detail>

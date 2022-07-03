@@ -1,4 +1,6 @@
 import uniqid from "uniqid";
+import avatar from '../../resources/avatar.png'
+
 
 const exampleCV = {
     pInfo: {
@@ -37,6 +39,11 @@ const exampleCV = {
             placeholder: 'Description',
             id: uniqid(),
         },
+        photo: {
+            value: avatar,
+            placeholder: '',
+            id: uniqid(),
+        }
     },
     experience: {
         [uniqid()] : {

@@ -37,6 +37,11 @@ const cv = {
             placeholder: 'Description',
             id: uniqid(),
         },
+        photo: {
+            value: '',
+            placeholder: '',
+            id: uniqid(),
+        }
     },
     experience: {
         [uniqid()] : {

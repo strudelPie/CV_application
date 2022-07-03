@@ -34,7 +34,7 @@ class PersonalInfo extends Component {
         const inputItems = this.props.cv.pInfo;
 
         const filteredItems = Object.entries(inputItems)
-            .filter(([key,value]) => !key.includes('description'))
+            .filter(([key,value]) => !key.includes('description' || 'photo'))
             .reduce((obj, [key, value]) => {
                 obj[key] = value;
                 return obj;

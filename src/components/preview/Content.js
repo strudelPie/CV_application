@@ -3,7 +3,6 @@ import styled from "styled-components";
 import ExpItem from "./ExpItem";
 import EduItm from "./EduItm";
 import Section from "../utils/Section";
-import uniqid from "uniqid";
 
 
 const ContentWrapper = styled.div`

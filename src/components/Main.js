@@ -7,6 +7,7 @@ import { createExpItm } from "./utils/experienceObj";
 import uniqid from "uniqid";
 import { createEduItm } from "./utils/educationObj";
 import exampleCV from "./utils/exampleCvObj";
+import { useReactToPrint } from "react-to-print";
 
 const Mainwrapper = styled.main`
     background-color: #F0F8FF;
@@ -29,6 +30,9 @@ class Main extends Component {
         this.state = {
             cv
         };
+
+        this.printRef = React.createRef();
+
         this.handleInputChange = this.handleInputChange.bind(this);
 
         this.handleAddSection = this.handleAddSection.bind(this);
@@ -110,13 +114,14 @@ class Main extends Component {
     }
 
     render() {
-
+        const printContent = this.printRef.current;
+        
         return (
             <Mainwrapper>
                 <Form cv={this.state.cv} eHandler={this.handleInputChange}
                 addSection={this.handleAddSection} deleteSection={this.handleDeleteSection} genExample={this.generateExample}
-                reset={this.reset}/>
-                <Preview cv={this.state.cv} />
+                reset={this.reset} print={this.printRef}/>
+                <Preview cv={this.state.cv} ref={el => (this.printRef = el)}/>
             </Mainwrapper>
         )
     };
