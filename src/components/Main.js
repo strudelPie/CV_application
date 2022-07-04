@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import Form from './form/Form'
 import Preview from './preview/Preview'
-import { cv, createCVItm } from "./utils/cvObj";
+import { createCVItm, cv } from "./utils/cvObj";
 import { createExpItm } from "./utils/experienceObj";
 import uniqid from "uniqid";
 import { createEduItm } from "./utils/educationObj";
@@ -27,10 +27,8 @@ class Main extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            cv
-        };
-
+        this.state = { cv };
+        
         this.printRef = React.createRef();
 
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -41,7 +39,7 @@ class Main extends Component {
 
         this.generateExample = this.generateExample.bind(this);
 
-        this.reset = this.reset.bind(this);
+        this.handleReset = this.handleReset.bind(this);
 
         this.handleAddPhoto = this.handleAddPhoto.bind(this);
 
@@ -61,12 +59,13 @@ class Main extends Component {
         const { name, value } = e.target;
         const path = name + ".value";
         
-        this.setState(prevState => {
-            const currentState = {...prevState.cv};
+        this.setState(state => {
+            const currentState = structuredClone(state.cv);
             
             this.updateNestedObj(currentState, value, path)
-            
+
             return {
+                ...state,
                 cv: currentState,
             }
         });
@@ -74,68 +73,83 @@ class Main extends Component {
 
     handleAddSection(e) {
         const { name } = e.target
-        const currentState = {...this.state.cv};
 
-        const importItem = (name === "experience") ? createExpItm() : createEduItm();
+        this.setState(state => {
+            const currentState = structuredClone(state.cv);
 
-        const newState = {
-            ...currentState,
-            [name]: {
-                ...currentState[name], 
+            const importItem = (name === "experience") ? createExpItm() : createEduItm();
+
+            const newState = {
+                ...currentState,
+                [name]: {
+                    ...currentState[name], 
                 [uniqid()] : importItem
+                }
             }
-        }
-        this.setState({
-            cv: newState 
+            return {
+                ...state,
+                cv: newState
+            }
         });
     }
 
     handleDeleteSection(e) {
         const { id, name } = e.target
-        const currentState = {...this.state.cv};
 
-        const { [id]: _, ...restOfObjSection } = currentState[name];
-        const newState = {
-            ...currentState,
-            [name]: { ...restOfObjSection }
-        };
+        this.setState(state => {
+            const currentState = structuredClone(state.cv);
+
+            const { [id]: _, ...restOfObjSection } = currentState[name];
+            
+            const newState = {
+                ...currentState,
+                [name]: { ...restOfObjSection }
+            };
         
-        this.setState({
-            cv: newState
+            return {
+                ...state,
+                cv:  newState
+            }
         });
     }
 
     generateExample() {
-        const newState = exampleCV;
-
-        this.setState({
-            cv: newState,
-        });
-    }
-
-    reset() {
-        const newCV = createCVItm();
-        this.setState(prevState => {   
+        this.setState((state) => {
             return {
-                ...prevState,
-                cv: newCV,
+                ...state,
+                cv: exampleCV,
             }
-        })
-       
-    }
+        }
+            
+    )}
+
+    handleReset() {
+        this.setState((state) => {
+            return {
+                ...state,
+                cv: createCVItm(),
+            }
+        }
+            
+    )}
+    
 
     handleAddPhoto(e) {
         const { name } = e.target
-        const  currentState  = {...this.state.cv};
-        const path = name + ".value";
-        const file = e.target.files[0];
-        const img = URL.createObjectURL(file);
-        
-        this.updateNestedObj(currentState, img, path)
 
-        this.setState({
-            cv: currentState },
-        );
+        this.setState(state => {
+            const currentState = structuredClone(state.cv);
+            const path = name + ".value";
+            const file = e.target.files[0];
+            const img = URL.createObjectURL(file);
+            this.updateNestedObj(currentState, img, path)
+            return {
+                ...state,
+                cv: currentState,
+            }
+        });
+
+        
     }
 
     render() {        
@@ -143,7 +157,7 @@ class Main extends Component {
             <Mainwrapper>
                 <Form cv={this.state.cv} eHandler={this.handleInputChange}
                 addSection={this.handleAddSection} deleteSection={this.handleDeleteSection} genExample={this.generateExample}
-                reset={this.reset} print={this.printRef}  addPhoto={this.handleAddPhoto} />
+                handleReset={this.handleReset} print={this.printRef}  addPhoto={this.handleAddPhoto} />
                 <Preview cv={this.state.cv} ref={el => (this.printRef = el)}/>
             </Mainwrapper>
         )

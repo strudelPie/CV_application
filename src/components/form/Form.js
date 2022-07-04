@@ -36,7 +36,7 @@ class Form extends Component {
             <FormWrapper>
                 <Menu >
                     <MenuButton text="Display Example" onClick={this.props.genExample}/>
-                    <MenuButton text="Reset" onClick={this.props.reset}/>
+                    <MenuButton text="Reset" onClick={this.props.handleReset}/>
                     <ReactToPrint 
                         trigger={() => {
                             return <MenuButton text="Export PDF"/>

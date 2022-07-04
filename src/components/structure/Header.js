@@ -5,9 +5,9 @@ const HeaderContainer = styled.div`
     background-color: #282c34;
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
     align-items: center;
-    gap: 8rem;
+    justify-content: flex-start;
+    padding: 0 5rem;
 
     @media (max-width: 1600px) {
         justify-content: center;
@@ -19,7 +19,6 @@ const HeaderWrapper = styled.div`
     display: flex;
     color: #eee;
     font-size: 1.5rem;
-    margin-left: 6rem;
         
     @media (max-width: 1600px) {
         
