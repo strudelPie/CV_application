@@ -4,7 +4,7 @@
 
 # Demo
 
-Check out the live demo <a href="https://strudelpie.github.io/CV_application/>here</a> 👈
+Check out the live demo <a href="https://strudelpie.github.io/CV_application/">here</a> 👈
 
 # Built With
 
