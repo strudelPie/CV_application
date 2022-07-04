@@ -4,7 +4,6 @@ import Header from "./Header";
 import Content from "./Content";
 import SideBar from "./SideBar";
 
-
 const PreviewWrapper = styled.div`
     width: 210mm;
     height: 297mm;

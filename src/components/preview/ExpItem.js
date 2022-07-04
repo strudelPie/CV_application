@@ -11,8 +11,7 @@ const ExpItemWrapper = styled.div`
 const Duration = styled.div`
     width: 25%;
     margin-right: 2rem;
-  
-    
+
 `
 
 const Details = styled.div`
