@@ -12,7 +12,7 @@ const FormWrapper = styled.div`
     flex-direction: column;
     justify-content: flex-start;
     background-color: #E1EBEE;
-    width: 210mm;
+    width: 150mm;
     max-width: 100%;
     gap: 1rem;
     padding: 1rem;
