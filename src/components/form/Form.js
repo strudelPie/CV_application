@@ -13,6 +13,7 @@ const FormWrapper = styled.div`
     justify-content: flex-start;
     background-color: #E1EBEE;
     width: 210mm;
+    max-width: 100%;
     gap: 1rem;
     padding: 1rem;
     box-sizing:border-box;

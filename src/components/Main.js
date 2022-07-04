@@ -11,14 +11,16 @@ import exampleCV from "./utils/exampleCvObj";
 const Mainwrapper = styled.main`
     background-color: #F0F8FF;
     display: flex;
+    flex-direction: row;
    
     justify-content: space-evenly;
-    padding: 3rem 5rem;
+    padding: 2rem 3rem;
     gap: 3rem;
 
-    @media (max-width: 1600px) {
+    @media (max-width: 1000px) {
         flex-direction: column;
         align-items: center;
+        max-width: 90%;
       }
 }`
 

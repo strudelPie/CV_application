@@ -9,12 +9,12 @@ const FooterWrapper = styled.footer`
     background-color: #282c34;
     color: white;
     gap: 0.5rem;
-    font-size: 1.2rem;
+    font-size: 1rem;
 
 `
 const Link = styled.a`
     color: white;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     :hover {opacity: 0.5}
     }  
 

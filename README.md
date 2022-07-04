@@ -2,11 +2,11 @@
 
 <p> React app which allows the user to build a CV to a template and export to PDF.</p>
 
-# Demo
+## Demo
 
 Check out the live demo <a href="https://strudelpie.github.io/CV_application/">here</a> 👈
 
-# Built With
+## Built With
 
 <ul>
   <li>
