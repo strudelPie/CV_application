@@ -1,12 +1,13 @@
-import React, { Component } from "react";
+import React, { Component, useState, useRef } from "react";
 import styled from "styled-components";
 import Form from './form/Form'
 import Preview from './preview/Preview'
-import { createCVItm, cv } from "./utils/cvObj";
+import { createCVItm, cvObj } from "./utils/cvObj";
 import { createExpItm } from "./utils/experienceObj";
 import uniqid from "uniqid";
 import { createEduItm } from "./utils/educationObj";
 import exampleCV from "./utils/exampleCvObj";
+import { useReactToPrint } from 'react-to-print';
 
 const Mainwrapper = styled.main`
     background-color: #F0F8FF;
@@ -24,30 +25,12 @@ const Mainwrapper = styled.main`
       }
 }`
 
-class Main extends Component {
+const Main = () => {
+    const [cv, setCV] = useState(cvObj)
 
-    constructor(props) {
-        super(props);
+    const printRef = useRef();
 
-        this.state = { cv };
-        
-        this.printRef = React.createRef();
-
-        this.handleInputChange = this.handleInputChange.bind(this);
-
-        this.handleAddSection = this.handleAddSection.bind(this);
-
-        this.handleDeleteSection = this.handleDeleteSection.bind(this);
-
-        this.generateExample = this.generateExample.bind(this);
-
-        this.handleReset = this.handleReset.bind(this);
-
-        this.handleAddPhoto = this.handleAddPhoto.bind(this);
-
-    }
-    
-    updateNestedObj(object, newValue, path){
+    function updateNestedObj(object, newValue, path) {
         var stack = path.split('.');
       
         while(stack.length > 1){
@@ -57,27 +40,24 @@ class Main extends Component {
         object[stack.shift()] = newValue;
     }
 
-    handleInputChange(e) {
+    const handleInputChange = (e) => {
         const { name, value } = e.target;
         const path = name + ".value";
         
-        this.setState(state => {
-            const currentState = structuredClone(state.cv);
-            
-            this.updateNestedObj(currentState, value, path)
+        setCV(state => {
+            const currentState = structuredClone(state);
 
-            return {
-                ...state,
-                cv: currentState,
-            }
+             updateNestedObj(currentState, value, path);
+
+            return  currentState;
         });
     }
 
-    handleAddSection(e) {
+    const handleAddSection = (e) => {
         const { name } = e.target
 
-        this.setState(state => {
-            const currentState = structuredClone(state.cv);
+        setCV(state => {
+            const currentState = structuredClone(state);
 
             const importItem = (name === "experience") ? createExpItm() : createEduItm();
 
@@ -88,18 +68,15 @@ class Main extends Component {
                 [uniqid()] : importItem
                 }
             }
-            return {
-                ...state,
-                cv: newState
-            }
+            return  newState;
         });
     }
 
-    handleDeleteSection(e) {
+    const handleDeleteSection = (e) => {
         const { id, name } = e.target
 
-        this.setState(state => {
-            const currentState = structuredClone(state.cv);
+        setCV(state => {
+            const currentState = structuredClone(state);
 
             const { [id]: _, ...restOfObjSection } = currentState[name];
             
@@ -108,62 +85,47 @@ class Main extends Component {
                 [name]: { ...restOfObjSection }
             };
         
-            return {
-                ...state,
-                cv:  newState
-            }
+            return newState;
+            
         });
     }
 
-    generateExample() {
-        this.setState((state) => {
-            return {
-                ...state,
-                cv: exampleCV,
-            }
-        }
+    const generateExample = () => {
+        setCV(exampleCV)
+    }
             
-    )}
 
-    handleReset() {
-        this.setState((state) => {
-            return {
-                ...state,
-                cv: createCVItm(),
-            }
-        }
-            
-    )}
+    const handleReset = () => {
+        setCV(createCVItm())
+    }
     
+    const handlePrint = useReactToPrint({
+        content: () => printRef.current,
+      });
 
-    handleAddPhoto(e) {
+    const handleAddPhoto = (e) => {
         const { name } = e.target
 
-        this.setState(state => {
-            const currentState = structuredClone(state.cv);
+        setCV(state => {
+            const currentState = structuredClone(state);
             const path = name + ".value";
             const file = e.target.files[0];
             const img = URL.createObjectURL(file);
-            this.updateNestedObj(currentState, img, path)
-            return {
-                ...state,
-                cv: currentState,
-            }
+            updateNestedObj(currentState, img, path)
+
+            return  currentState;
         });
-
-        
     }
-
-    render() {     
-        return (
-            <Mainwrapper>
-                <Form cv={this.state.cv} eHandler={this.handleInputChange}
-                addSection={this.handleAddSection} deleteSection={this.handleDeleteSection} genExample={this.generateExample}
-                handleReset={this.handleReset} print={this.printRef}  addPhoto={this.handleAddPhoto} />
-                <Preview cv={this.state.cv} ref={el => (this.printRef = el)}/>
-            </Mainwrapper>
-        )
-    };
+        
+    return (
+        <Mainwrapper>
+            <Form cv={cv} eHandler={handleInputChange}
+            addSection={handleAddSection} deleteSection={handleDeleteSection} genExample={generateExample}
+            handleReset={handleReset} print={handlePrint}  addPhoto={handleAddPhoto} />
+            <Preview cv={cv} ref={printRef}/>
+        </Mainwrapper>
+    )
+    
 }
 
 export default Main;

@@ -56,7 +56,7 @@ const Label = styled.label`
 class PersonalInfo extends Component {    
     render() {
         const inputItems = this.props.cv.pInfo;
-
+        
         const filteredItems = Object.entries(inputItems)
             .filter(([key,value]) => !key.includes('description'))
             .filter(([key,value]) => !key.includes('photo'))

@@ -1,6 +1,6 @@
 import uniqid from "uniqid";
 
-const cv = {
+const cvObj = {
     pInfo: {
         firstName: {
             value: '',
@@ -104,7 +104,7 @@ const cv = {
 }
 
 const createCVItm = () => {
-    return cv;
+    return cvObj;
 }
 
-export { cv, createCVItm };
+export { cvObj, createCVItm };
