@@ -27,16 +27,13 @@ const Mainwrapper = styled.main`
 
 const Main = () => {
     const [cv, setCV] = useState(cvObj)
-
     const printRef = useRef();
 
     function updateNestedObj(object, newValue, path) {
         var stack = path.split('.');
-      
         while(stack.length > 1){
           object = object[stack.shift()];
         }
-      
         object[stack.shift()] = newValue;
     }
 
@@ -46,9 +43,7 @@ const Main = () => {
         
         setCV(state => {
             const currentState = structuredClone(state);
-
              updateNestedObj(currentState, value, path);
-
             return  currentState;
         });
     }
@@ -58,9 +53,7 @@ const Main = () => {
 
         setCV(state => {
             const currentState = structuredClone(state);
-
             const importItem = (name === "experience") ? createExpItm() : createEduItm();
-
             const newState = {
                 ...currentState,
                 [name]: {
@@ -74,19 +67,15 @@ const Main = () => {
 
     const handleDeleteSection = (e) => {
         const { id, name } = e.target
-
         setCV(state => {
             const currentState = structuredClone(state);
-
             const { [id]: _, ...restOfObjSection } = currentState[name];
             
             const newState = {
                 ...currentState,
                 [name]: { ...restOfObjSection }
             };
-        
             return newState;
-            
         });
     }
 
@@ -102,6 +91,7 @@ const Main = () => {
     const handlePrint = useReactToPrint({
         content: () => printRef.current,
       });
+     // throws warning because react-to-print uses findDOMNode
 
     const handleAddPhoto = (e) => {
         const { name } = e.target
@@ -125,7 +115,6 @@ const Main = () => {
             <Preview cv={cv} ref={printRef}/>
         </Mainwrapper>
     )
-    
 }
 
 export default Main;
