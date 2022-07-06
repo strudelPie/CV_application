@@ -6,6 +6,8 @@
 
 Check out the live demo <a href="https://strudelpie.github.io/CV_application/">here</a> 👈
 
+For a quick jump into the code, most of the heavy lifting is done <a href="https://github.com/strudelPie/CV_application/blob/main/src/components/Main.js">here<a> in Main.js.
+
 ## Built With
 
 <ul>
