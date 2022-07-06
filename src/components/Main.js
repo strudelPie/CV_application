@@ -154,7 +154,7 @@ class Main extends Component {
         
     }
 
-    render() {        
+    render() {     
         return (
             <Mainwrapper>
                 <Form cv={this.state.cv} eHandler={this.handleInputChange}
