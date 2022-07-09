@@ -74,9 +74,9 @@ const Main = () => {
         });
     };
 
-    const generateExample = () => { setCV(exampleCV) };
+    const generateExample = () => setCV(exampleCV);
             
-    const handleReset = () => { setCV(createCVItm())};
+    const handleReset = () => setCV(createCVItm());
     
     const handlePrint = useReactToPrint({ content: () => printRef.current });
      // throws warning because react-to-print uses findDOMNode
