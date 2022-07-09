@@ -1,10 +1,10 @@
 import React, { useState, useRef } from "react";
 import styled from "styled-components";
-import Form from './form/Form'
-import Preview from './preview/Preview'
+import Form from './form/Form';
+import Preview from './preview/Preview';
+import uniqid from "uniqid";
 import { createCVItm, cvObj } from "./utils/cvObj";
 import { createExpItm } from "./utils/experienceObj";
-import uniqid from "uniqid";
 import { createEduItm } from "./utils/educationObj";
 import exampleCV from "./utils/exampleCvObj";
 import { useReactToPrint } from 'react-to-print';
@@ -29,7 +29,7 @@ const Main = () => {
 
     function updateNestedObj(object, newValue, path) {
         var stack = path.split('.');
-        while(stack.length > 1){
+        while(stack.length > 1) {
           object = object[stack.shift()];
         }
         object[stack.shift()] = newValue;
@@ -40,14 +40,13 @@ const Main = () => {
         const path = name + ".value";
         setCV(state => {
             const currentState = structuredClone(state);
-             updateNestedObj(currentState, value, path);
+            updateNestedObj(currentState, value, path);
             return  currentState;
         });
     };
 
     const handleAddSection = (e) => {
         const { name } = e.target
-
         setCV(state => {
             const currentState = structuredClone(state);
             const importItem = (name === "experience") ? createExpItm() : createEduItm();
@@ -75,13 +74,11 @@ const Main = () => {
         });
     };
 
-    const generateExample = () => {setCV(exampleCV)};
+    const generateExample = () => { setCV(exampleCV) };
             
-    const handleReset = () => {setCV(createCVItm())};
+    const handleReset = () => { setCV(createCVItm())};
     
-    const handlePrint = useReactToPrint({
-        content: () => printRef.current,
-      });
+    const handlePrint = useReactToPrint({ content: () => printRef.current });
      // throws warning because react-to-print uses findDOMNode
 
     const handleAddPhoto = (e) => {
