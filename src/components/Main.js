@@ -27,12 +27,12 @@ const Main = () => {
     const [cv, setCV] = useState(cvObj)
     const printRef = useRef();
 
-    function updateNestedObj(object, newValue, path) {
-        var stack = path.split('.');
-        while(stack.length > 1) {
-          object = object[stack.shift()];
-        }
-        object[stack.shift()] = newValue;
+    function updateNestedObj(obj, value, path) {
+        const [head, ...rest] = path.split('.');
+        !rest.length
+            ? obj[head] = value
+            : updateNestedObj(obj[head], value, rest.join('.'));
+        return obj;
     };
 
     const handleInputChange = (e) => {
@@ -40,8 +40,8 @@ const Main = () => {
         const path = name + ".value";
         setCV(state => {
             const currentState = structuredClone(state);
-            updateNestedObj(currentState, value, path);
-            return  currentState;
+            const newState = updateNestedObj(currentState, value, path);
+            return  newState;
         });
     };
 
@@ -88,8 +88,8 @@ const Main = () => {
             const path = name + ".value";
             const file = e.target.files[0];
             const img = URL.createObjectURL(file);
-            updateNestedObj(currentState, img, path)
-            return  currentState;
+            const newState = updateNestedObj(currentState, img, path);
+            return  newState;
         });
     }
         
