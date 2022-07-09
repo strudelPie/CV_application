@@ -1,4 +1,4 @@
-import React, { Component, useState, useRef } from "react";
+import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import Form from './form/Form'
 import Preview from './preview/Preview'
@@ -13,17 +13,15 @@ const Mainwrapper = styled.main`
     background-color: #F0F8FF;
     display: flex;
     flex-direction: row;
-   
     justify-content: space-evenly;
     padding: 2rem 3rem;
     gap: 3rem;
-
     @media (max-width: 1000px) {
         flex-direction: column;
         align-items: center;
         max-width: 90%;
       }
-}`
+}`;
 
 const Main = () => {
     const [cv, setCV] = useState(cvObj)
@@ -95,14 +93,12 @@ const Main = () => {
 
     const handleAddPhoto = (e) => {
         const { name } = e.target
-
         setCV(state => {
             const currentState = structuredClone(state);
             const path = name + ".value";
             const file = e.target.files[0];
             const img = URL.createObjectURL(file);
             updateNestedObj(currentState, img, path)
-
             return  currentState;
         });
     }
