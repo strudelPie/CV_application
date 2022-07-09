@@ -10,7 +10,7 @@ import exampleCV from "./utils/exampleCvObj";
 import { useReactToPrint } from 'react-to-print';
 
 const Mainwrapper = styled.main`
-    background-color: #F0F8FF;
+    background-color: ${props => props.theme.colors.main};
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -33,18 +33,17 @@ const Main = () => {
           object = object[stack.shift()];
         }
         object[stack.shift()] = newValue;
-    }
+    };
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         const path = name + ".value";
-        
         setCV(state => {
             const currentState = structuredClone(state);
              updateNestedObj(currentState, value, path);
             return  currentState;
         });
-    }
+    };
 
     const handleAddSection = (e) => {
         const { name } = e.target
@@ -61,30 +60,24 @@ const Main = () => {
             }
             return  newState;
         });
-    }
+    };
 
     const handleDeleteSection = (e) => {
         const { id, name } = e.target
         setCV(state => {
             const currentState = structuredClone(state);
             const { [id]: _, ...restOfObjSection } = currentState[name];
-            
             const newState = {
                 ...currentState,
                 [name]: { ...restOfObjSection }
             };
             return newState;
         });
-    }
+    };
 
-    const generateExample = () => {
-        setCV(exampleCV)
-    }
+    const generateExample = () => {setCV(exampleCV)};
             
-
-    const handleReset = () => {
-        setCV(createCVItm())
-    }
+    const handleReset = () => {setCV(createCVItm())};
     
     const handlePrint = useReactToPrint({
         content: () => printRef.current,
