@@ -8,22 +8,19 @@ const HeaderWrapper = styled.div`
     grid-column: span 2;
     padding: 1.5rem;
     line-height: 2.5rem;
-    background-color: #4C516D;
+    background-color: ${props => props.theme.colors.buttonAndPreviewBorder};
     color: white;
-
-}`
+}`;
 
 const FullName = styled.h1`
     margin: 0;
     font-size: 2.5rem;
-   
-}`
+}`;
 
 const JobTitle = styled.h3`
     margin: 0;
     font-size: 1.5rem;
-   
-}`
+}`;
 
 
 class Header extends Component {

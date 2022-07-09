@@ -1,26 +1,5 @@
 import React, { Component } from "react";
-import styled from "styled-components";
-
-const ExpItemWrapper = styled.div`
-    display: flex;
-    box-sizing: border-box;
-    margin-bottom: 1rem;    
-    
-`
-
-const Duration = styled.div`
-    width: 25%;
-    margin-right: 2rem;
-
-`
-
-const Details = styled.div`
-    width: 75%;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    
-`
+import { ItemWrapper, Duration, Details } from './blankItms';
 
 class ExpItem extends Component {
     render() {
@@ -32,13 +11,13 @@ class ExpItem extends Component {
         const location = cv.experience[id].location.value
 
         return ( 
-           <ExpItemWrapper>
+           <ItemWrapper>
                 <Duration>{from} - {to}</Duration>
                 <Details>
                     <div><b>{position}</b></div>
                     <div>{organisation}, {location}</div>
                 </Details>
-           </ExpItemWrapper>
+           </ItemWrapper>
         )
     };
 }

@@ -1,23 +1,16 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import Section from "../utils/Section";
-import Input from "../utils/Input";
-import InputButton from "../utils/InputButton";
-import uniqid from "uniqid";
+import { Input } from "../utils/Input";
+import Button from "../utils/Button";
 
+const EducationWrapper = styled.div``
 
-const EducationWrapper = styled.div`
-    
-}`
-
-const EducationSectionWrapper = styled.div`
-    
-}`
+const EducationSectionWrapper = styled.div``
 
 class Education extends Component {    
     render() {
         const inputItems = this.props.cv.education;
-
         return (
             <EducationWrapper>
                 <Section title="Education">
@@ -30,11 +23,10 @@ class Education extends Component {
                             inputItems={inputItems[key]} 
                             stateSection={stateSection}
                             eHandler={this.props.eHandler}/>
-                            <InputButton id={key} text="Delete" onClick={this.props.deleteSection} eHandlerType="education"/>
+                            <Button id={key} text="Delete" onClick={this.props.deleteSection} eHandlerType="education"/>
                         </EducationSectionWrapper>
                     )})}
-                    
-                    <InputButton text="Add" onClick={this.props.addSection} eHandlerType="education"/>
+                    <Button text="Add" onClick={this.props.addSection} eHandlerType="education"/>
                 </Section>
             </EducationWrapper>
            

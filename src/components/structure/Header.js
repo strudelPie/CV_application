@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 
 const HeaderContainer = styled.div`
-    background-color: #282c34;
+    background-color: ${props => props.theme.colors.headerFooter};
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -13,8 +13,8 @@ const HeaderContainer = styled.div`
         justify-content: center;
         margin: 0;
     }
+`;
 
-`
 const HeaderWrapper = styled.div`
     display: flex;
     color: #eee;
@@ -24,7 +24,7 @@ const HeaderWrapper = styled.div`
         
         margin: 0;
     }
-`
+`;
 
 class Header extends Component {
     render() {

@@ -1,57 +1,30 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import Section from "../utils/Section";
-import Input from "../utils/Input";
+import { Input, InputCSS } from "../utils/Input";
+import buttonStyles from "../styling/buttonStyle";
 
 const PersonalInfoWrapper = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-`
+`;
 
-const TextArea = styled.textarea.attrs({rows: "4"})`    
+const TextArea = styled.textarea.attrs({rows: "4"})`  
+    ${InputCSS}
     box-sizing: border-box;
     width: 100%;
-    background-color: white;
-    border-radius: 5px;
-    border: 1px solid transparent;
-    background-color: white;
-    border-radius: 5px;
-    border: 1px solid transparent;
-    padding: 0.5rem;    
     margin-top: 0.5rem;
     resize: vertical;
-
-    &:focus {
-        border: 1px solid #aaa;
-    }
-}`
+}`;
 
 const FileInputWrapper = styled.input`
     display: none;
 `;
 
 const Label = styled.label`    
-    background-color: #4C516D;
-    border: none;
-    color: white;
-    padding: 10px 15px;
-    text-align: center;
-    font-size: 16px;
-    opacity: 0.6;
-    transition: 0.3s;
-    display: inline-block;
-    text-decoration: none;
-    cursor: pointer;
-    width: 100%;
-    box-sizing: border-box;
-    border-radius: 5px;
-    margin-top: 0.5rem;
-    white-space: nowrap;
-
-    :hover {opacity: 1}
-    }  
-}`
+    ${buttonStyles}  
+}`;
 
 class PersonalInfo extends Component {    
     render() {
@@ -75,14 +48,11 @@ class PersonalInfo extends Component {
                     <Input type="text" inputItems={filteredItems} 
                     stateSection={stateSection}
                     eHandler={this.props.eHandler}/>
-                    
                     <TextArea name={txtAreaName} placeholder="Description" onChange={this.props.eHandler} value={inputItems["description"].value}/> 
-
                     <Label>
                         <FileInputWrapper type="file" onChange={this.props.addPhoto} name={photoName} />
                         Upload Photo
                     </Label>
-                   
                 </Section>
             </PersonalInfoWrapper>   
         )

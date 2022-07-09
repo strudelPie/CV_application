@@ -1,30 +1,29 @@
 import React, { Component } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-
-const InputWrapper = styled.input`
+const InputCSS = css`
     background-color: white;
-    border-radius: 5px;
     border: 1px solid transparent;
-    background-color: white;
     border-radius: 5px;
-    border: 1px solid transparent;
     padding: 0.5rem;  
 
     &:focus {
         border: 1px solid #aaa;
-      }
-    }   
-    
+    }
+`;
+
+const InputWrapper = styled.input`
+    ${InputCSS}
     display: ${props => props.file ?  `none` : "" };
-`
+`;
+
 const InputSectionWrapper = styled.div`
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
     margin-top: 0.5rem;  
     }    
-`
+`;
 
 class Input extends Component {
     render() {
@@ -51,4 +50,4 @@ class Input extends Component {
     };
 }
 
-export default Input;
+export { Input, InputCSS };
